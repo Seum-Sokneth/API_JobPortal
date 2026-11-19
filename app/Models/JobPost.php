@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JobPost extends Model
+class JobPost extends BaseModel
 {
     //
     use SoftDeletes;
+
     protected $table = 'job_post';
-      protected $fillable = [
+
+    protected $fillable = [
+
         'company_id',
         'department_id',
+        'job_name',
         'post_date',
         'deadline',
         'employment_type',
@@ -42,6 +45,7 @@ class JobPost extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
     public function department()
     {
         return $this->belongsTo(JobDepartement::class, 'department_id');

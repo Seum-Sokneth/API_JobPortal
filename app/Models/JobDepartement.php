@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class JobDepartement extends Model
+class JobDepartement extends BaseModel
 {
     //
     protected $table = 'job_departement';
+
     protected $fillable = [
         'name',
         'slug',

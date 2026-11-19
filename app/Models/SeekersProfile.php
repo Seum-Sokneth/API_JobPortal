@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 
-class SeekersProfile extends Model
+#[Hidden(['password'])]
+class SeekersProfile extends BaseModel
 {
     protected $table = 'seekers_profiles';
+
     protected $fillable = [
         'user_id',
         'fullname',
         'email',
         'password',
-        'phone'
+        'phone',
     ];
 
     public function user()
@@ -23,5 +25,17 @@ class SeekersProfile extends Model
     public function resume()
     {
         return $this->hasOne(Resume::class, 'seeker_id');
+    }
+
+    /**
+     * Get the attribute casting rules.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
     }
 }
